@@ -2,16 +2,6 @@ spring:
   application:
     name: home-task-jackpot-contribution
 
-server:
-  port: 8080
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info,metrics
-
-
   datasource:
     url: jdbc:h2:mem:jackpotdb;MODE=PostgreSQL;DATABASE_TO_UPPER=false
     driver-class-name: org.h2.Driver
@@ -25,7 +15,7 @@ management:
 
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     open-in-view: false
     properties:
       hibernate:
@@ -33,9 +23,23 @@ management:
 
   kafka:
     bootstrap-servers: localhost:9092
+    topic:
+      jackpot-bets: jackpot-bets
     consumer:
       group-id: jackpot-service
       auto-offset-reset: earliest
+      properties:
+        spring.json.trusted.packages: "*"
     producer:
       properties:
         spring.json.add.type.headers: false
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
