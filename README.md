@@ -2,7 +2,9 @@
 
 Backend home assignment implementation for processing jackpot bet contributions and jackpot reward evaluations.
 
-The service receives bets through a REST API, publishes them to Kafka, consumes bet events from the `jackpot-bets` topic, contributes each bet to a matching jackpot pool, and exposes an API to evaluate whether a contributed bet wins a jackpot reward.
+The service receives bets through a REST API, publishes them to Kafka, consumes bet events from the `jackpot-bets`
+topic, contributes each bet to a matching jackpot pool, and exposes an API to evaluate whether a contributed bet wins a
+jackpot reward.
 
 ---
 
@@ -211,7 +213,8 @@ This makes it easy to add new contribution or reward configuration types without
 
 The same `betId` cannot contribute more than once.
 
-If Kafka redelivers the same bet event, the service returns the existing contribution instead of increasing the jackpot pool again.
+If Kafka redelivers the same bet event, the service returns the existing contribution instead of increasing the jackpot
+pool again.
 
 Reward evaluation is also idempotent. The same bet cannot be evaluated repeatedly until it wins.
 
@@ -353,7 +356,7 @@ http://localhost:8080/h2-console/
 Connection settings:
 
 ```text
-JDBC URL: jdbc:h2:mem:jackpotdb
+JDBC URL: jdbc:h2:mem:jackpotdb;MODE=PostgreSQL;DATABASE_TO_UPPER=false
 User Name: sa
 Password:
 ```

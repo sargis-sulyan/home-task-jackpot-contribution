@@ -1,7 +1,6 @@
 package com.hometask.jackpot.domain.strategy.contribution;
 
 import com.hometask.jackpot.domain.model.ContributionType;
-import com.hometask.jackpot.domain.strategy.contribution.PercentageUtils;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;

@@ -6,12 +6,12 @@ import com.hometask.jackpot.domain.strategy.reward.RewardCalculationContext;
 import com.hometask.jackpot.domain.strategy.reward.RewardCalculationResult;
 import com.hometask.jackpot.domain.strategy.reward.RewardStrategy;
 import com.hometask.jackpot.domain.strategy.reward.RewardStrategyResolver;
-import com.hometask.jackpot.infrastructure.persistance.entity.JackpotContributionEntity;
-import com.hometask.jackpot.infrastructure.persistance.entity.JackpotEntity;
-import com.hometask.jackpot.infrastructure.persistance.entity.JackpotRewardEntity;
-import com.hometask.jackpot.infrastructure.persistance.repository.JackpotContributionRepository;
-import com.hometask.jackpot.infrastructure.persistance.repository.JackpotRepository;
-import com.hometask.jackpot.infrastructure.persistance.repository.JackpotRewardRepository;
+import com.hometask.jackpot.infrastructure.persistence.entity.JackpotContributionEntity;
+import com.hometask.jackpot.infrastructure.persistence.entity.JackpotEntity;
+import com.hometask.jackpot.infrastructure.persistence.entity.JackpotRewardEntity;
+import com.hometask.jackpot.infrastructure.persistence.repository.JackpotContributionRepository;
+import com.hometask.jackpot.infrastructure.persistence.repository.JackpotRepository;
+import com.hometask.jackpot.infrastructure.persistence.repository.JackpotRewardRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

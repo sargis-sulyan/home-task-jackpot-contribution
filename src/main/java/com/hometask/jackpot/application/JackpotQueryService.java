@@ -1,17 +1,17 @@
 package com.hometask.jackpot.application;
 
-import com.hometask.jackpot.api.dto.ContributionResponse;
-import com.hometask.jackpot.api.dto.JackpotResponse;
-import com.hometask.jackpot.api.dto.RewardResponse;
+import com.hometask.jackpot.application.query.ContributionDetails;
+import com.hometask.jackpot.application.query.JackpotDetails;
+import com.hometask.jackpot.application.query.RewardDetails;
 import com.hometask.jackpot.domain.exception.ContributionNotFoundException;
 import com.hometask.jackpot.domain.exception.JackpotNotFoundException;
 import com.hometask.jackpot.domain.exception.RewardNotFoundException;
-import com.hometask.jackpot.infrastructure.persistance.entity.JackpotContributionEntity;
-import com.hometask.jackpot.infrastructure.persistance.entity.JackpotEntity;
-import com.hometask.jackpot.infrastructure.persistance.entity.JackpotRewardEntity;
-import com.hometask.jackpot.infrastructure.persistance.repository.JackpotContributionRepository;
-import com.hometask.jackpot.infrastructure.persistance.repository.JackpotRepository;
-import com.hometask.jackpot.infrastructure.persistance.repository.JackpotRewardRepository;
+import com.hometask.jackpot.infrastructure.persistence.entity.JackpotContributionEntity;
+import com.hometask.jackpot.infrastructure.persistence.entity.JackpotEntity;
+import com.hometask.jackpot.infrastructure.persistence.entity.JackpotRewardEntity;
+import com.hometask.jackpot.infrastructure.persistence.repository.JackpotContributionRepository;
+import com.hometask.jackpot.infrastructure.persistence.repository.JackpotRepository;
+import com.hometask.jackpot.infrastructure.persistence.repository.JackpotRewardRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,11 +33,11 @@ public class JackpotQueryService {
     }
 
     @Transactional(readOnly = true)
-    public JackpotResponse getJackpot(String jackpotId) {
+    public JackpotDetails getJackpot(String jackpotId) {
         JackpotEntity jackpot = jackpotRepository.findById(jackpotId)
                 .orElseThrow(() -> new JackpotNotFoundException(jackpotId));
 
-        return new JackpotResponse(
+        return new JackpotDetails(
                 jackpot.getJackpotId(),
                 jackpot.getInitialPoolAmount(),
                 jackpot.getCurrentPoolAmount(),
@@ -47,11 +47,11 @@ public class JackpotQueryService {
     }
 
     @Transactional(readOnly = true)
-    public ContributionResponse getContribution(String betId) {
+    public ContributionDetails getContribution(String betId) {
         JackpotContributionEntity contribution = contributionRepository.findByBetId(betId)
                 .orElseThrow(() -> new ContributionNotFoundException(betId));
 
-        return new ContributionResponse(
+        return new ContributionDetails(
                 contribution.getBetId(),
                 contribution.getUserId(),
                 contribution.getJackpotId(),
@@ -65,11 +65,11 @@ public class JackpotQueryService {
     }
 
     @Transactional(readOnly = true)
-    public RewardResponse getReward(String betId) {
+    public RewardDetails getReward(String betId) {
         JackpotRewardEntity reward = rewardRepository.findByBetId(betId)
                 .orElseThrow(() -> new RewardNotFoundException(betId));
 
-        return new RewardResponse(
+        return new RewardDetails(
                 reward.getBetId(),
                 reward.getUserId(),
                 reward.getJackpotId(),
